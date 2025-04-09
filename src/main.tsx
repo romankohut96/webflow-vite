@@ -3,4 +3,4 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
 
-createRoot(document.getElementById('root')!).render(console.log('work'));
+createRoot(document.getElementById('root')!).render(<App />);
