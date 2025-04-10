@@ -17,4 +17,5 @@ export default defineConfig({
   server: {
     origin: 'https://webflow-vite.vercel.app/',
   },
+  base: 'https://webflow-vite.vercel.app/',
 });
