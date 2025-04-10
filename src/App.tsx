@@ -35,6 +35,8 @@ function App() {
       });
   };
 
+  console.log(window.location);
+
   return (
     <>
       <div>
