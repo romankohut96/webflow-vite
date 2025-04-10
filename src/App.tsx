@@ -1,16 +1,34 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from './assets/vite.svg';
 import './App.css';
 
 function App() {
   const [count, setCount] = useState(0);
-  console.log('work');
-  console.error('work');
-  console.warn('reactLogo', reactLogo);
+  const testData = localStorage.getItem('TEST_DATA');
+
+  console.log('react localStorage', testData);
+  const URL = 'https://jsonplaceholder.typicode.com/posts';
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    fetch(URL)
+      .then((res) => res.json())
+
+      .then((response) => {
+        console.log(response);
+      });
+  };
+
   return (
     <>
       <div>
+        <button type="button" onClick={() => localStorage.clear()}>
+          Clear storage
+        </button>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" loading="lazy" alt="Vite logo" />
         </a>
