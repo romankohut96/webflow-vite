@@ -1,9 +1,21 @@
-import { useEffect, useState } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from './assets/vite.svg';
 import './App.css';
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useLocation,
+  useSearchParams,
+} from 'react-router';
 
 function App() {
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
+
+  console.log('location', location);
+  console.log('searchParams', searchParams);
   const [count, setCount] = useState(0);
   const testData = localStorage.getItem('TEST_DATA');
 
@@ -40,6 +52,7 @@ function App() {
             alt="React logo"
           />
         </a>
+        <a href={'/about'} />
       </div>
       <h1>Vite + React</h1>
       <div className="card">
@@ -57,4 +70,14 @@ function App() {
   );
 }
 
-export default App;
+const Wrapper: FC = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+export default Wrapper;
