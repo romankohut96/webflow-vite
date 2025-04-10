@@ -3,12 +3,12 @@ import reactLogo from './assets/react.svg';
 import viteLogo from './assets/vite.svg';
 import './App.css';
 import {
-  BrowserRouter,
-  Route,
-  Routes,
+  createHashRouter,
+  RouterProvider,
   useLocation,
   useSearchParams,
 } from 'react-router';
+import About from './About';
 
 function App() {
   const location = useLocation();
@@ -52,7 +52,7 @@ function App() {
             alt="React logo"
           />
         </a>
-        <a href={'/about'} />
+        <a href={'/about'}>About page</a>
       </div>
       <h1>Vite + React</h1>
       <div className="card">
@@ -70,14 +70,19 @@ function App() {
   );
 }
 
+const router = createHashRouter([
+  {
+    path: '/',
+    element: <App />,
+  },
+  {
+    path: '/about',
+    element: <About />,
+  },
+]);
+
 const Wrapper: FC = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default Wrapper;
